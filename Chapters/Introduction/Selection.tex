@@ -1,0 +1,196 @@
+\subsection{Selection}
+
+\label{sec:Selection}
+
+Selection is the non-random, differential survival and reproduction of organisms as a result of their different phenotypes. 
+A population contains many individuals, and these individuals vary in their genetic makeup; the population has genetic variance.
+This genetic variation, in combination with some environmental effects, is the cause of the phenotypic variation in a population \parencite{Ridley2004}.
+This phenotypic variation results in variation in survival, fecundity, and mating ability, and this ultimately determines whether an individual contributes any alleles to the next generation of that population:
+Individuals may be better or worse at surviving, or may not be chosen by the opposite sex to mate \parencite{Hedrick2010}.
+This can be expressed in terms of relative fitness. Relative fitness can be defined as the relative ability of different genotypes to pass on their alleles to future generations \cite{Charlesworth2010}.
+Individuals with genotypes that have a higher relative fitness are expected to survive and pass their alleles on to the next generation, and so over several generations, those genotypes will increase in frequency in the population.
+
+\subsubsection{The basic diploid model}
+
+The basic diploid model of selection models how selection operates for a
+single diploid locus, with two alleles.
+The model assumes that there is random mating among individuals in a population, and that selection is operating identically for both sexes.
+In this model, selection occurs through differences in viability and it is constant through space and time i.e. it acts on every individual in every generation, regardless of location.
+Generations are discrete and non-overlapping and no mutation is occurring.
+No gene flow or inbreeding occurs and the size of the population is infinite so there is no genetic drift \parencite{Charlesworth2010,Hedrick2010}.
+Despite these assumptions it is still a very useful model to explore and describe how selection operates.
+
+Assume there are two alleles of a single locus, denoted as $A_1$, and $A_2$.
+With these two alleles, three possible diploid genotypes are possible.
+Two of them are heterozygous: $A_1A_1$, and $A_2A_2$, and the third, $A_1A_2$ is heterozygous.
+The relative fitnesses of $A_1A_1$, $A_1A_2$, and $A_2A_2$ are denoted as $w_{11}$, $w_{12}$, and $w_{22}$ respectively \parencite{Wright1937}.
+The contribution of each genotype to the next generation can be calculated as the product of its relative fitness and its frequency prior to selection.
+The contributions of $A_1A_1$, $A_1A_2$, and $A_2A_2$ are $p_0^2w_{11}$, $2p_0q_0w_{12}$, and $q_0^2w{22}$, where $p$ is defined as the frequency of $A_1$ and $q$ is defined as the frequency of $A_2$ \parencite{Charlesworth2010,Hedrick2010}.
+Assuming Hardy-Weinberg allele proportions before selection, the mean fitness of the population is:
+
+\begin{equation} \label{eq:meanfit}
+\bar{w}=p_0^2w_{11}+2p_0q_0w_{12}+q_0^2w_{22}
+\end{equation}
+
+The frequency of a genotype after selection can be calculated by dividing its contribution by the mean fitness, for example, for $A_1A_1$ this is $p_0^2w_{11} / \bar{w}$.
+The frequency of the alleles $A_1$ and $A_2$ after selection ($p_1$ and $q_1$) can be obtained by noting that the frequency of any of the two alleles is the sum of the frequency of the homozygous genotype and half the frequency of the heterozygous genotype \parencite{Charlesworth2010,Hedrick2010}.
+
+\begin{subequations}
+\begin{align}
+p_1=\frac{p(pw_{11}+qw_{12})}{\bar{w}}\\
+q_1=\frac{q(pw_{12}+qw_{22})}{\bar{w}}
+\end{align}
+\end{subequations}
+
+The change in $q$ over one round of selection can be
+defined as $\Delta q=q_1-q_0$. Substituting $q_1$ and simplifying the 
+formula gives equation \ref{eq:freqchange} \parencite{Charlesworth2010,Hedrick2010}.
+
+\begin{equation} \label{eq:freqchange}
+\Delta q = \frac{pq(w_{2\cdot} - w_{1\cdot})}{\bar{w}}
+\end{equation}
+
+If $p$ or $q$ are $0$, then there can be no change in frequencies of that allele, 
+as it is not present in the population \parencite{Charlesworth2010,Hedrick2010}.
+
+\subsubsection{Different fitness relationships}
+
+The formulas and quantities just described can be used to explore the effects of 
+selection for different fitness relationships.
+Different relative fitness values of $w_{11}$, $w_{12}$, and $w_{22}$ can be generated for different fitness relationships through the combination of two other coefficients: $s$ is the selection coefficient which measures the amount of selection against a homozygote, and $h$ is the level of dominance \parencite{Charlesworth2010,Hedrick2010}.
+When $h$ is multiplied by $s$, this measures the amount of selection against a heterozygote \parencite{Charlesworth2010,Hedrick2010}.
+These different fitness relationships are displayed in table \ref{table:fitarrays}.
+
+\begin{table}
+\centering
+\caption{Fitness values for different fitness relationships, adapted from \cite{Hedrick2010}.}
+\begin{tabular}{ P{4cm} P{2cm} P{2cm} P{2cm} }
+\hline
+Fitness Relationship & $A_1A_1$ & $A_1A_2$ & $A_2A_2$ \\
+\hline
+Recessive lethal & $1$ & $1$ & $0$ \\ 
+Recessive detrimental & $1$ & $1$ & $1-s$ \\
+Additive detrimental & $1$ & $1-(s/2)$ & $1-s$ \\
+Purifying Selection & $1$ & $1-hs$ & $1-s$ \\
+Positive Selection & $1+s$ & $1+hs$ & $1$ \\ 
+Overdominance & $1-s_1$ & $1$ & $1-s_2$ \\
+Underdominance & $1+s_1$ & $1$ & $1+s_2$ \\
+\hline
+\end{tabular}
+\label{table:fitarrays}
+\end{table}
+
+A recessive lethal allele describes an allele which has a detrimental effect on the individual that is so severe it leads to death of the individual.
+Examples of alleles with such effects include those that cause Tay-Sachs disease in humans \parencite{Myerowitz1997}.
+Relative fitnesses for this situation are given in row one of table \ref{table:fitarrays}.
+Using these values in the formulas \ref{eq:meanfit} and \ref{eq:freqchange} it can be demonstrated that the mean fitness of a population reaches $1$ when there is no $A_2$ allele in the population ($q=0$).
+Furthermore, $\Delta q$ is largest when $q$ is large, and is smaller when $q$ approaches $0$ \parencite{Hedrick2010}.
+Therefore, when the frequency of a recessive lethal is high it is purged by selection very quickly from the population.
+The reason lethal recessive alleles are not purged as quickly when they are at low frequency is that they are present in heterozygotes, therefore the deleterious recessive alleles are not subject to differential selection \parencite{Hedrick2010}.
+
+Some recessive alleles are not lethal, but they are detrimental to the fitness of an individual \parencite{Charlesworth2009a,Charlesworth2010}.
+This type of fitness relationship is called a recessive deleterious relationship. 
+Fitness values for this scenario are given in row 2 of table \ref{table:fitarrays}.
+The selection coefficient ($s$) reflects how detrimental allele $A_2$ is. 
+If $s = 1$, then $A_2$ would be a recessive lethal allele and selection would act as previously described.
+Mean fitness is maximized when $q = 0$ and $\Delta q$ is greatest when $q_0=2/3$, and lower for smaller values of $q$ \parencite{Hedrick2010}.
+Again this is because $A_2$ mostly occurs in individuals with a heterozygote genotype for low $q$.
+
+Heterozygous individuals may have phenotypes that are intermediate to those of the two homozygotes.
+If the phenotype of a heterozygote is exactly halfway between that of the homozygotes this is referred to as additivity.
+Fitness values for additivity are shown on line 3 of table \ref{table:fitarrays}.
+In this scenario $\Delta q$ is larger when both alleles are equally frequent in the population.
+$\Delta q$ is greater at low value of $q$ than in the previous scenarios.
+For low $q$, $A_2$ is mostly in heterozygotes, but the deleterious effects of $A_2$ are not masked in the heterozygotes when the fitness relationship is additive \parencite{Charlesworth2010,Hedrick2010}.
+
+Alleles with additive and recessive effects have been discussed, but every possible level of dominance can be represented in the model with the $h$ coefficient.
+Fitness relationships modeling different levels of dominance with $h$ are shown on lines 4 and 5 of table \ref{table:fitarrays}.
+These fitness arrays describe purifying and positive selection.
+Purifying selection acts to reduce the frequency of a detrimental allele in a population \parencite{Hedrick2010}.
+In contrast, positive selection acts to increase the frequency of an alleles with effects that are beneficial in the current environment of a population.
+In reality, selection acts in both positive and purifying roles simultaneously.
+In both the models if $h = 0$ then the allele is recessive, if $h = 0.5$ it is additive, and if $h=1$ it is dominant \parencite{Charlesworth2010}. 
+For positive selection, the fastest increase in $p$ occurs when the allele is dominant.
+When the allele is additive, then $p$ still increases quickly.
+However, it takes longer for $p$ to increase when $A_1$ is recessive.
+At low frequencies, the beneficial $A_1$ allele typically occurs in heterozygotes, and as a recessive allele, selection does not act on it \parencite{Hedrick2010}.
+
+In the scenarios previously described selection is a force acting to reduce genetic variation as an allele either increases or decreases in frequency in a population.
+However, circumstances can cause selection to maintain allelic diversity in the population.
+This is possible when the heterozygote individuals have a higher fitness than individuals of either of the two homozygote genotypes.
+The phenomenon is called overdominance.
+The fitness values for overdominance are listed on row 6 of table \ref{table:fitarrays}.
+For selection to maintain both alleles in a population, $\Delta q$ must be equal to $0$ for some initial $q_0$ between $0$ and $1$ \parencite{Charlesworth2010}.
+This is called the equilibrium frequency of $q$, and it is a function of both the selection coefficients for the two homozygotes.
+When $q$ is below this equilibrium frequency, $\Delta q$ is positive.
+When $q$ is above the equilibrium frequency, $\Delta q$ is negative.
+Thus, as $q$ is perturbed away from this equilibrium $\Delta q$ shifts such that $q$ will return to this equilibrium \parencite{Hedrick2010}.
+Therefore, both alleles are maintained in the population at a certain ratio.
+
+Warfarin resistance in Rats is an example of heterozygote advantage.
+Resistance was conferred to the rats by a dominant allele (R) at the VKORC1 locus. 
+Individuals with one copy of R were resistant to Warfarin, but homozygous individuals had a much greater requirement for Vitamin K \parencite{Greaves1977}.
+Heterozygote advantage has also been invoked to explain polymorphism at loci in the major histocompatibility complex (MHC) \parencite{Spurgin2010}.
+Overdominance is also an explanation of hybrid vigour (heterosis) \parencite{Baranwal2012} and so this is of particular relevance to chapter \ref{chap:Acandida}, where the plausibility of of a generalist plant pathogen evolving through repeated hybridisation is discussed.
+
+Underdominance describes the situation where heterozygous individuals have a lower fitness than homozygous individuals.
+Fitness values for this relationship are shown on the last line of table \ref{table:fitarrays}. 
+As with overdominance, there is an equilibrium frequency of $q$ for which $\Delta q = 0$. 
+However, unlike overdominance, with underdominance, $\Delta q$ is positive above the equilibrium point and negative below it \parencite{Hedrick2010}.
+Therefore the equilibrium is unstable, and allele frequencies move away from it, rather than towards it.
+
+\subsubsection{Selection and dynamic environments}
+
+The basic model of selection described effectively demonstrates the key concepts of when considering how selection acts.
+However there are extensions to the model, for example, the model has been extended to account for more than two alleles.
+Selection is the mechanism that causes adaptive evolution and directional selection and molecular evidence of past positive selection is abundant \parencite{Hoekstra2007}.
+Most of the phenotypic characteristics we associate with species are thought to be the end result of selection, even if the adaptive function is not obvious. 
+
+However, the efficiency of selection can be reduced:
+Muller introduced the concept of Genetic Load. This is defined as the reduction in fitness from the maximum possible in a population \parencite{Davis2011}.
+The principal factors causing genetic load are thought to be the presence of 
+deleterious recessive mutations, maintained by a mutation-selection balance (see section \ref{sec:Mutation}), and the segregation of homozygotes when there is heterozygote advantage \parencite{Davis2011}.
+Small isolated populations may suffer from genetic load because they can become fixed for detrimental alleles (see section \ref{sec:Gdrift}).
+
+Evidence of balancing-selection; selection that maintains polymorphism like overdominance, is not as common \parencite{Bubb2006}, but there are scenarios in which selection does maintain polymorphism.
+Selection varying in time and space, frequency dependent selection, and host-pathogen evolution, are three such models that are particularly pertinent to the research presented in this thesis as they model selection operating in a dynamic and changing environments.
+A common aspect of these models is that they violate an assumption of the basic model: constant fitness \parencite{Charlesworth2010}. If constant fitness is not assumed, it can be shown that selection may maintain polymorphism even in absence of heterozygote advantage.
+
+Relative fitnesses may depend on the frequency of of the different genotypes in the population. An allele may have a greater fitness when it is present in the population in low numbers and less fitness when it is present in larger numbers \parencite{Hedrick2010,Charlesworth2010}.
+This is called negative frequency dependent selection.
+Alternatively, an allele might increase in fitness as it increases in frequency \parencite{Hedrick2010,Charlesworth2010}.
+
+Frequency dependent selection occurs where there are host-pathogen interactions.
+Pathogens have genes known as virulence factors and effector genes, which enable them to infect a host.
+New mutations in a host species that confer resistance to a pathogen will be at low frequencies but have a high selective advantage.
+As a result, the allele will start to spread in the host population.
+As the allele becomes more common, the pathogen will find fewer new hosts they can infect \parencite{Charlesworth2006,Frank1993,Seger1988}.
+Therefore, pathogen numbers decrease and the advantage gained by being resistant diminishes.
+Indeed, if there is a cost to maintaining the resistance it will even become detrimental.
+This process also happens with the pathogens.
+As hosts acquire resistance to a pathogen, pathogens with new mutations allowing them to infect previously resistant hosts will have a strong selective advantage.
+The now susceptible host genotype will decrease in frequency, as the pathogen increases in frequency.
+The selective advantage of the pathogen genotype is reduced and may even suffer a cost if it is less virulent than other pathogen genotypes at infecting other host genotypes \parencite{Charlesworth2006,Frank1993,Seger1988}.
+Parasite genotype frequencies may therefore become balanced in a population, resulting in highly polymorphic genes in pathogens, such as antigenic genes in malaria, and effector genes in pathogens like \textit{Phytophthora infestans}\parencite{Morgan2007,Policy2001}.
+This type of process, typically assuming gene-for-gene interactions between host and pathogen, leads to cycles of allele frequency changes in both the host and pathogen \parencite{May1983}.
+This may be of particular importance to haploid pathogens which by definition, will not have their polymorphism maintained by heterozygote advantage, and may be subject to clonal interference which restricts levels polymorphism and the speed of adaptation \parencite{Gerrish1998}.
+
+In addition to existing in balance, polymorphisms in a host or pathogen pathogen can become fixed due to their selective advantage, which can lead to a succession of fixation events in both host and pathogen as each is under selection pressure to counter adapt each others previous adaptations.
+This is called an evolutionary arms race, and can lead to long term variability and rapid evolution of DNA sequences such as effector genes in plant pathogens, and R genes in plants, and accelerated molecular evolution (see chapter \ref{chap:Acandida}) \parencite{Brown2003,Charlesworth2006,Morgan2007,Paterson2010,Rose2004}.
+
+Selection may maintain variation when there is enough temporal variation in relative fitnesses of different genotypes.
+An allele with detrimental effects in one generation may confer an advantage in subsequent generations, should conditions change.
+This scenario is pertinent to chapter \ref{chap:diatom} as the environment of \textit{Fragilariopsis cylindrus} is also temporally dynamic with seasonal changes such as freezing and thawing events.
+Models of temporally changing fitnesses have shown that polymorphism is only maintained by selection under very strict conditions:
+The geometric mean of fitness over $n$ generations for both homozygotes must be smaller than that of the heterozygote (equation \ref{eq:timefit}) \parencite{Haldane1963}. 
+
+\begin{equation} \label{eq:timefit}
+\Bigg( \prod_{i=1}^{n} w_{11\cdot i} \Bigg)^{1/n} < 1 > \Bigg( \prod_{i=1}^{n} w_{22\cdot i} \Bigg)^{1/n}
+\end{equation}
+
+This can be illustrated by considering two seasons, $A_1$ is advantageous in one season, and $A_2$ is advantageous in the other.
+Fitness values in season one then are $1+s$, $1$, and $1-s$ for $A_1A_1$, $A_1A_2$, and $A_2A_2$ respectively.
+In the second season, this is reversed and $A_1A_1$ has fitness $1-s$ and $A_2A_2$ has fitness $1+s$.
+If the same number of generations is spent in each season, conditions for polymorphism are met, otherwise directional selection will result instead.
+Such expectations from theory have been validated in experimental evolution studies with bacteria, where serial transfer regimes were used to emulate the effects of temporal variation \parencite{Rainey2000}.
+Therefore, it seems that there is little evidence polymorphism is maintained by selection where fitnesses vary in time, without heterozygote advantage or frequency dependent selection.

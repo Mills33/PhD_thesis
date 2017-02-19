@@ -1,0 +1,96 @@
+\subsection{Genetic Drift and finite population sizes}
+\label{sec:Gdrift}
+
+Genetic drift is the chance changes in allele frequency that result from the random sampling of gametes from generation to generation in a finite population.
+
+\subsubsection{The effect of drift}
+
+Genetic drift has the same expected effect on all loci in a genome.
+In a large population, on average only a small change in allele frequencies will occur as a result of genetic drift.
+However, for smaller populations, genetic drift can cause larger fluctuations in allele frequencies and may even lead to the loss of fixation of alleles purely by chance alone \parencite{Hedrick2010,Charlesworth2010}.
+Simulations of genetic drift reveal that small population sizes can cause replicate populations to drift apart in allele frequency.
+The probability that an allele goes to fixation as a result of genetic drift in a finite population is proportional to its initial frequency, assuming differential selection is not occurring. $u(q) = q_0$
+Over replicate simulated populations, the mean allele frequency does not change as a result of drift, but the distribution of allele frequencies over replicate populations does \parencite{Hedrick2010,Charlesworth2010}.
+Therefore, drift is often examined by considering heterozygosity or the variance in allele frequencies of replicate populations. 
+
+Consider a Wright-Fisher model population with $N$ (diploid) individuals and assume each contributes two haploid gametes to the next generation \parencite{Crow1970}.
+For an offspring individual, the probability of drawing the same allele twice from the parents is $2N[1/(2N)]^2$.
+The probability that they are different is $1-1/(2N)$.
+Two alleles may also be identical by descent with probability:
+
+\begin{equation} \label{eq:ibd}
+f_{t+1} = \frac{1}{2N} + \bigg(1-\frac{1}{2N}\bigg)f_t
+\end{equation}
+
+This can be rewritten and the expected heterozygosity after $t$ generations derived:
+
+\begin{subequations}
+\begin{align}
+H_{t+1} = \bigg(1-\frac{1}{2N}\bigg)H_t\\
+\nonumber\\
+H_{t} = \bigg(1-\frac{1}{2N}\bigg)^tH_0
+\end{align}
+\end{subequations}
+
+This demonstrates that each generation, heterozygosity decreases at a rate that is an inverse function of the population size, and it is possible to calculate the expected heterozygosity after $t$ generations \parencite{Hedrick2010,Charlesworth2010}.
+In addition, it is possible to relate observed, heterozygosity to the difference in expected heterozygosity and the variance in allele frequency. 
+Taking account of this into the above equations and rearranging produces a formula for for the variation in allele frequencies at time $t$.
+The formula shows that as the number of generations increases, the variance approaches a maximum value of $p0q0$.
+This Wright-Fisher model assumes parents produce many gametes and zygotes, and of those $N$ are chosen to form the next generation. It is implicit that individuals are hermaphrodites and there is a small probability of self-fertilization.
+The mean time until fixation of an allele due to drift depends on initial frequencies of the allele and the initial frequency of the allele \parencite{Hedrick2010,Charlesworth2010}.
+As population size increases, the effect of drift becomes smaller as it takes more consecutive chance increases of an allele to fix it in the population.
+For any given population size, the lower the initial allele frequency is, the longer it is for that allele to become fixed by drift.
+With new neutral mutants, the expected time to fixation is four times the population size.
+
+Explanations of drift often mention the population size $N$. However, in many situations the relevant value is the number of breeding individuals.
+This may be very different from the census population size.
+The concept of an effective population size makes it possible to consider an ideal population of size $N$ in which all parents have an equal expectation of being a parent of any individual progeny. i.e the Wright-Fisher model.
+Effective population size can be measured by different methods: inbreeding, variance, and eigenvalue.
+When a population remains the same size these measures are similar, however they may differ when populations are growing or shrinking \parencite{All2012,Waples2002}.
+The effective population size can be influenced by the frequency of different sexes in a population, variance in reproduction, and varying numbers of individuals over several generations.
+
+Bottlenecks and founder events are two specific cases where a population changes size significantly, influencing the effective population size.
+A bottleneck describes a situation in which something occurs to drastically reduce the number of individuals which survive in a population, or otherwise get to contribute to the next generation of the population.
+Typically, these are events such as natural disasters, overwintering, or epidemics.
+A founder event describes a situation in which a population is started from a low number of individuals, for example individuals being carried to a new island or location.
+In both cases, these events can cause large random changes in allele frequencies, resulting in lower heterozygosity and fewer alleles than the ancestral population.
+The changes in allele frequencies resulting from bottlenecks and founder events generate genetic distance between two populations, equation \ref{eq:bndist} gives the standard genetic distance \parencite{Nei1987} after a bottleneck or founder event, where $t$ is the the number of generations the event lasted \parencite{Chakraborty1977}.
+
+\begin{equation}
+D_t = -\frac{1}{2}\ln\bigg(\frac{1-H_0}{1-H_t}\bigg)
+\label{eq:bndist}
+\end{equation}
+
+\subsubsection{Drift and selection}
+
+In a finite population, when there is no differential selection at a locus, an allele may become fixed or lost as a result of genetic drift.
+
+In a population of infinite size, by definition there is no genetic drift, and selectively favored alleles increase in frequency and asymptotically approach fixation.
+Detrimental alleles always reduce in frequency and approach loss.
+In finite populations however, because of the effects of genetic drift, alleles may not always be fixed when they are favorable, and detrimental alleles may be fixed despite their detriment.
+The probability of a favorable allele in a finite population is a function of the initial frequency of the allele, the extent to which selection favours that allele, and the size of the population.
+\cite{Kimura1962} developed an equation that takes these factors to compute the probability of fixation of $A_1$ \parencite{kimura1971theoretical}.
+The probability of fixation of an allele is a function of its initial frequency, the level of dominance, the effective population size, and its selective advantage.
+The probability of fixation of an allele increases with increasing initial allele frequency and with increasing $Ns$ (the product of population size and selection coefficient).
+When $Ns << 1$, this indicates that $s << 1/N$ and that the selective advantage of an allele is very low. In this case, changes in allele frequency are determined by drift.
+When $Ns >> 1$, then $s$ is higher than $1/N$ and changes in allele frequency depend more on selection than on drift. 
+The effect where alleles with low selection coefficients (and hence only slightly deleterious effects), may act as if they were neutral in small populations was first identified by \cite{Wright1931}, and described in terms of molecular evolution by \cite{Ohta1973}, who called it the nearly neutral model.
+
+In a neutral situation in a finite population, the loss of heterozygosity is $1-1/(2N)$.
+For any given balancing selection regime, the decay in heterozygosity can be defined as $H_{t+1} = (1-d)H_t$, where $d$ is the loss from unfixed allele frequency states and the gain for the absorbing states.
+With no selection, $d$ is $1/(2N)$ i.e. the expression reduces to the neutral model of heterozygosity loss as a result of drift already described.
+The ratio of decay for a neutral locus over one undergoing selection is called a retardation factor \parencite{Robertson1962}.
+This factor is one when there is neutrality, but when $d$ is less than 1, then selection can slow the rate of fixation, or when $d > 1$, then selection is increasing the rate of fixation.
+Even though selection may be balancing in an infinite population, in a finite population, less genetic variation may be retained than in a population with no selection.
+Populations with heterozygote advantage, and unequal homozygote fitness values genetic variation is eliminated faster than in populations with neutrality.
+
+\subsubsection{Impact of genetic drift}
+
+Genetic drift needs to be considered when studying plant pathogens and organisms in very dynamic environments, as those populations may experience periodic population expansions or contractions.
+Analysis of $Q_{ST}$ values of eight traits, and $F_{ST}$ values of eight neutral loci of the pathogenic fungus \textit{Rhynchosporium commune} revealed that the majority of the traits analysed were evolving according to stabilizing selection, although a trait for growth at 22 degrees centigrade was subject to diversifying selection and local adaptation \parencite{Stefansson2014}.
+This was proposed to be due to the fact the pathogen exists in large rather homogeneous environments (i.e. homogeneous monoculture systems) where they mostly experience one host genotype, and therefore stabilizing selection plays a greater role than does drift or directional selection.
+Furthermore, the cycles of frequency dependent selection and maintenance of diversity previously described would only be expected to occur if there were some allelic diversity - rare advantageous alleles - in the host.
+Other plant pathogens have been significantly affected by changes in their population size.
+For example, the global pandemic of \textit{Phytophthora infestans} was initiated by a single clone, which escaped to North America, and then to Europe, and then to the rest of the world \parencite{Goodwin1994}.
+Analyses of RFLP loci of the pathogen \textit{Mycosphaerella graminicola} isolated from different locations, indicated that Mexican and Australian populations have low gene diversity \parencite{Zhan2003a}, consistent with founder events and genetic drift.
+\cite{Steele2001} found that in Australia, \textit{Puccina striiformis} originates from a single founder event, the founding race identified corresponded to a race previously identified in Europe.

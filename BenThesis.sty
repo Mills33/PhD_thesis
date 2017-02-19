@@ -1,0 +1,144 @@
+%==================================================================================================
+% Style file for PhD thesis of Ben J. Ward - University of East Anglia & The Sainsbury Laboratory.
+%==================================================================================================
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+\ProvidesPackage{BenThesis}
+\brokenpenalty=10000 % Prevents page breaks at hyphens.
+\makeatletter % Makes @ a letter.
+
+%==================================================================================================
+% Settings for the document style...
+%==================================================================================================
+\usepackage[doublespacing]{setspace} % onehalfspacing or doublespacing
+
+%==================================================================================================
+% New Definition allowments, like department and so on...
+%==================================================================================================
+
+\def\dept#1{\gdef\@dept{#1}} % Define the university department.
+
+\def\advis@r{Adviser} % Define an advisor.
+
+\def\principaladvisor#1{\gdef\@principaladvisor{#1}} % Define the principal advisor.
+
+\def\submitdate#1{\gdef\@submitdate{#1}} % Define a submission date.
+
+\def\copyrightyear#1{\gdef\@copyrightyear{#1}} % Define a copyright year.
+
+\def\regnum#1{\gdef\@regnum{#1}} % Define registration number.
+
+\def\@submitdate{\ifcase\the\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space \number\the\year}
+\ifnum\month=12
+    \@tempcnta=\year \advance\@tempcnta by 1
+    \edef\@copyrightyear{\number\the\@tempcnta}
+\else
+    \def\@copyrightyear{\number\the\year}
+\fi
+
+% Conditionals to set whether to include copyright notice, tables page, figures page and so on.
+\newif\ifcopyright \newif\iffigurespage \newif\iftablespage
+\copyrighttrue \figurespagetrue \tablespagetrue
+
+% Set up title page. - Called from beforepreface.
+\def\titlep{%
+\thispagestyle{empty}
+\null\vskip1in
+\begin{center}
+        {\Huge\bfseries\sffamily
+        \expandafter{\@title}\par}        
+\end{center}
+\vskip.6in
+\begin{center}
+        \large A thesis submitted to the School of 
+        \expandafter{\@dept} of the University of East Anglia 
+        in partial fulfillment of the requirements for the degree of
+        Doctor of Philosophy
+\end{center}
+\vskip.6in
+\begin{center}
+        By
+        \@author\\
+        Registration number:
+        \@regnum\\
+        \@submitdate\\
+\end{center}
+\vfill
+\copyright\ This copy of the thesis has been supplied 
+on condition that anyone who consults it is understood to recognize 
+that its copyright rests with the author and that no quotation from 
+the thesis, nor any information derived therefrom, may be published 
+without the author's prior, written consent.\cleardoublepage}
+
+% Sets up a copyright page, called from beforepreface.
+
+\def\copyrightpage{%
+    \null\vfill
+    \begin{center}
+        \Large\copyright\ Copyright \@copyrightyear\\
+        by\\
+        \@author\\
+    \end{center}
+    \vfill}
+
+\def\beforepreface{%
+    \pagenumbering{roman}
+    \pagestyle{plain}
+    \titlep
+    \ifcopyright\copyrightpage\fi
+    \cleardoublepage}
+    
+% Each section of the preface calls this command.
+\def\prefacesection#1{%
+%    \thispagestyle{empty}
+    \null\vskip0.2in
+    \begin{center}
+        {\Huge\bfseries{#1}\par}
+    \end{center}
+    \null\vskip0.08in
+%    \chapter*{\center{#1}}
+    \addcontentsline{toc}{chapter}{#1}}
+    
+\def\prefacesection#1{%
+    \chapter*{#1}
+    \addcontentsline{toc}{chapter}{#1}}
+    
+%Then after the preface 'afterpreface' is called which then
+%does the business of creating contents, figures and tables pages
+%following lines give lower case tables and figures page titles.
+\renewcommand{\listtablename}{List of tables}
+\renewcommand{\listfigurename}{List of figures}
+\def\afterpreface{
+    \tableofcontents
+    \cleardoublepage
+    \iftablespage
+        {\addvspace{10pt}
+        \let\saveaddvspace=\addvspace
+        \def\addvspace##1{}
+        \listoftables
+        \let\addvspace=\saveaddvspace}
+        \cleardoublepage
+    \fi
+    \iffigurespage
+        {\addvspace{10pt}
+        \let\saveaddvspace=\addvspace
+        \def\addvspace##1{}
+        \listoffigures
+        \let\addvspace=\saveaddvspace}
+        \cleardoublepage
+    \fi
+%        \include{symbols}
+%        \clearemptydoublepage
+%        \include{abbrevs}
+%        \clearemptydoublepage
+    \pagenumbering{arabic}
+    \pagestyle{plain}    
+}
+    
+%\pagestyle{plain}
+
+\makeatother % Stop making at (@) a letter anymore.

@@ -1,0 +1,217 @@
+\subsection{Population structure and gene flow}
+\label{sec:Gflow}
+
+Populations may be split into subpopulations due to geographical, ecological, or behavioral factors.
+When a population is divided or there is more than one population, the amount of genetic exchange, or gene flow, between the subpopulations may differ between the different populations or subpopulation.
+When gene flow is high between two populations or subpopulations, they are highly connected genetically and the amount of genetic variation between them is homogenized.
+Conversely, when the amount of gene flow is low between populations or subpopulations, then genetic drift, selection, and mutation in the populations and subpopulations may lead to genetic differentiation \parencite{Charlesworth2010,Hedrick2010}.
+
+Some types of movement of individuals like migrations will not actually result in gene flow, especially if the individual is only transiently passing through a population and does not breed with members of the population \parencite{Hedrick2010}.
+Gene flow may be distinguished from simple migration as movement between groups that results in genetic exchange \parencite{Endler1977}.
+
+When considering population subdivision it is often assumed that the subpopulations are always present.
+Another view assumes they can die out, but they are repopulated from neighboring subpopulations, this is termed a metapopulation \parencite{Hanski1998}, and the dynamics of extinction and re-population make metapopulations differ from the basic concept of a subdivided population. What follows is a basic description of how gene flow effects populations using a simple genetic model, before the joint effects of gene flow and drift, and gene flow and selection are considered.
+
+The continent-island model models a situation in which a large continent population is connected to a smaller island population \parencite{Charlesworth2010}.
+The smaller island population receives migrants from a larger continent population.
+The larger continent population is assumed to be large enough to render the effect of genetic drift negligible compared to the effect of gene flow.
+Gene flow is assumed to have negligible effect on the source population. 
+In this model, the proportion of migrants moving to the island is $m$, and the proportion of residents in the island population is $1 – m$.
+The proportion of $A_2$ in the migrants coming from the continent is $q_m$ and the frequency of $A_2$ on the island before the gene flow is $q_0$ \parencite{Hedrick2010}.
+
+Frequency of $A_2$ on the island after gene flow is calculated as:
+
+\begin{equation} \label{eq:qislandflow}
+q_1 = (1 - m)q_0+mq_m
+\end{equation}
+
+Formula \ref{eq:qislandflow} can be reduced to $q_0-m(q_0-q_m)$.
+
+The change in frequency of q is then defined as:
+
+\begin{equation} \label{eq:dqislandflow}
+\Delta q = q_1 - q_0
+\end{equation}
+
+Formula \ref{eq:dqislandflow} reduces to $- m(q_0-q_m)$.
+
+$q_m$ and $m$ are assumed to be constant \parencite{Hedrick2010}.
+From these equations it is clear that $m=0$ then there is not migration from the continent to the island and so there is no change in allele frequency.
+If $q_0 < q_m$ then the frequency of $q$ increases on the island.
+If $q_0 > q_m$ the frequency decreases.
+This indicates that there is a stable equilibrium freq of $A_2$ at $q_m = q_0$.
+
+A general formula to calculate the frequency of $A_2$ for any generation $t$ has been derived as:
+
+\begin{equation}
+q_t=(1-m)^tq_0+[1-(1-m)^t]q_m
+\end{equation}
+
+In this formula, as $t$ increases the first term approaches $0$, and the second term approaches $q_m$ \parencite{Hedrick2010}.
+Therefore eventually the frequency of $A_2$ in the island population converges to the frequency of $A_2$ in the continent population.
+This is because gene flow is unidirectional, and therefore eventually all in the island population are descended from migrants.
+Thus, the allele frequencies approach that of the continent i.e. the source of the migrants \parencite{Charlesworth2010}.
+In this model, allele frequency changes at a maximum rate initially, and as the equilibrium is approached, it decreases.
+
+A more general model assumes gene flow can occur among all parts of a structured population.
+The model assumes there is $k$ different subpopulations, and that the proportion of individuals migrating from a subpopulation $i$ to another subpopulation $j$ is $m_{ij}$ \parencite{Hedrick2010}.
+The values of $m_{ij}$ then can form a matrix called a backward migration matrix \parencite{Bodmer1968}.
+In this matrix, the proportion of residents (i.e. not migrants) in each subpopulation $i$ are given by the diagonal values of the matrix (i.e. $m_{ii}$).
+Each row of the matrix sums to $1$, because it describes the proportion of migrants coming into a population $i$ from the other $j$ populations.
+For this model, the amount of allele $A_2$ in any subpopulation $i$ after gene flow is:
+
+\begin{equation} \label{eq:generalflowqprime}
+q\sp{\prime}_i=\sum_{j=1}^k m_{ij}q_{j}
+\end{equation}
+
+To process of allele frequency change over time can be described with matrix notation, where $M$ is the migration matrix, and $Q_t$ is the vector of allele frequencies in each population at generation $t$:
+
+\begin{equation}
+Q_{t+1} = MQ_t
+\end{equation}
+
+The above can be generalized for any $t$
+
+\begin{equation}
+Q_t=M^tQ_0
+\end{equation}
+
+\parencite{Hedrick2010}
+
+In this model, as with the continent-island model previously described, after a period of time, allele frequencies in the subpopulations converge and approach an asymptotic value.
+This value can be calculated with equation \ref{eq:generalflowqprime} using a migration matrix raised to a power of $t$ large enough that all elements have reached their asymptotic values.
+This demonstrates the homogenizing effect gene flow has on populations when it is sustained for a period of time \parencite{Charlesworth2010,Hedrick2010}.
+
+
+\subsubsection{Gene flow - drift balance}
+
+Gene flow acts to homogenize populations as described above.
+However populations are finite in size and so genetic drift will cause differences between the populations through the random fixation and loss of alleles.
+The joint effects of gene flow and drift can be examined using a simple model of replicate island populations \parencite{Wright1940}.
+Each island has $N$ individuals and receives a proportion of migrants each generation $m$, from a continent population.
+
+When the gene flow between islands, and the population size of the islands are large the allele frequencies on the islands behave as previously described: they will converge to the frequencies of the continent.
+However if population sizes are small, and the amount of gene flow is low, then the allele frequencies of the islands may differ from each other \parencite{Hedrick2010}.
+So genetic drift causes allele frequencies in subpopulations to drift apart, whilst gene flow acts to homogenise the allele frequencies:
+Take $N$ to be equal to $N_e$, the probability two alleles coalesce in generation $t-1$ is $1/(2N)$ and the probability that they do not is $1-1/(2N)$ \parencite{Hedrick2010}. 
+The expected homozygosity in generation $t$ can be given as:
+
+\begin{equation}
+f_t=\frac{1}{2N}+\bigg(1 - \frac{1}{2N}\bigg)f_{t-1}
+\end{equation}
+
+This expression can be modified by the probability that both alleles are not migrants:
+
+\begin{equation} \label{eq:ft}
+f_t=\bigg[\frac{1}{2N}+\bigg(1 - \frac{1}{2N}\bigg)f_{t-1}\bigg](1-m)^2
+\end{equation}
+
+Assuming there is an equilibrium between gene flow homogenizing variation, and drift generating variation, then $f = f_t = f_{t-1}$ and $f = F_{ST}$, then
+
+\begin{equation}
+F_{ST} = \frac{(1-m)^2}{2N-(2N-1)(1-m)^2}
+\end{equation}
+
+\parencite{Hedrick2010}
+
+$F_{ST}$ is the fixation index, a measure of genetic differentiation over subpopulations.
+When $m = 0$ then $F_{ST} = 1$, and when $m=1$, then $F_{ST}=0$.
+In other words when levels of gene flow are high, the genetic differentiation over subpopulations is low.
+Ignoring the powers of two, and reducing the formula, $F_{ST}$ can be approximated:
+
+\begin{equation} \label{eq:fstapprox}
+F_{ST} \approx \frac{1}{4Nm + 1}
+\end{equation}
+
+Assuming $k$ subpopulations, the differentiation between populations can be given as
+
+\begin{equation}
+G_{ST} = \frac{1}{4Nm\bigg(\frac{k}{k-1}\bigg)^2 + 1}
+\end{equation}
+
+\parencite{Slatkin1995}.
+In both equations, $Nm$ means the absolute number of migrants entering a population every generation.
+
+$F_{ST}$ for any generation $t$ has been derived when $m = 0$
+
+\begin{equation}
+F_{ST(t)} = 1 - e^{t/2N}
+\end{equation}
+
+\parencite{Wright1943}.
+
+The above expression is 0, when subpopulations are not very separated in early generations, and reaches a maximum of 1 as subpopulations are separated by drift.
+The smaller the population size, the faster the subpopulations diverge due to drift.
+The increase in $F_{ST}$ is fastest for the first $2N$ generations, after which time it approaches the maximum of $1$.
+
+Iterating over formula \ref{eq:ft} allows examination of the rate of approach to equilibrium for different values of $N$ and $m$.
+When population size is large and the amount of gene flow is large, then approach to equilibrium is fast, but when populations are large and gene flow is small, then the approach to equilibrium is slow \parencite{Hedrick2010}.
+
+Population subdivision also affects the $N_e$ of populations.
+For the island model:
+
+\begin{equation}
+N_e=\frac{kN}{1-F_{ST}}
+\end{equation}
+
+If $F_{ST}$ is low, then $N_e\approx kN$, but if gene flow is low then $N_e$ might be larger than $kN$ \parencite{Wright1943}.
+
+\cite{Wright1940} gave an explicit method of estimating allele frequencies incorporating the effects of gene flow and drift for the island model.
+Assuming the frequency of $A_2$ in migrants ($q_m$) is constant, when observing a large number of islands, their average allele frequency will be $q_m$, but depending on drift and gene flow, the distribution over the islands will vary.
+The shape of the distribution depends on $4Nmq_m$ and $4Nm(1-q_m)$.
+With large amounts of gene flow and large population sizes, the allele frequencies over the islands will not depart far from the mean \parencite{Hedrick2010}.
+However, with lower $4Nmq_m$ and $4Nm(1-q_m)$, and if $q_m = 0.5$, then the distribution takes on a U shape: Drift plays a greater role in determining allele frequencies as alleles enter the islands by gene flow, and islands become temporarily fixed for either $A_2$, or instead for $A_1$.
+
+Other models add an extra consideration by assuming different populations occupy positions in space, and that gene flow is restricted to certain routes or directions.
+For example, the stepping stone model arranges populations in a one dimensional structure, and restricts gene flow to occurring only between populations that are adjacent in that one dimensional space \parencite{Hedrick2010}.
+The effective population size of such a linearly divided population can be approximated as $N_e\approx kN$ \parencite{Maruyama1970}.
+If populations are distributed across a landscape according to available habitat, then there may be distance-dependent gene flow between the populations.
+In such case, expected patterns of genetic variation may be similar to the stepping stone models \parencite{Wright1943}.
+It has been suggested that the amount of genetic divergence as estimated with $Nm$ or $F_{ST}/(1-F_{ST})$ should change as an inverse linear function of geographic distance ($Nm$), or as a linear function of geographic distance ($F_{ST}/(1-F_{ST})$) \parencite{Rousset1997}.
+
+In metapopulations \parencite{Levins1969}, the dynamics of recolonization and extinction greatly influence $N_e$, the genetic variation present in the metapopulation, and the distribution of genetic variation over the subpopulations \parencite{Slatkin1977,Hedrick1997,Whitlock1997,Nunney1999}.
+Many parameters can influence the rate at which genetic variation is lost, for example, the source of individuals recolonizing a previously extinct path might be from a single path, or a group of individuals from all other non-extinct patches.
+A metapopulation with 20 patches, an infinite population size in each patch, and no gene flow except during recolonization, will have an effective size of 150 when recolonization of a patch is from a single female from another patch.
+This low $N_e$ is due to the low number of founders in each recolonization \parencite{Hedrick1997, Hedrick2010}. 
+
+
+\subsubsection{Gene flow - selection balance}
+
+Gene flow and selection are often both important forces driving allele frequencies in a population.
+Both forces are diverse in their effects on allele frequencies and so the interaction of the two forces can lead to complex results \parencite{Lenormand2002}.
+Therefore, only a simple scenarios of selection and gene flow is introduced here.
+
+Consider again the continent-island model, if the change in allele frequency due selection is $\Delta q_s$, and the change in allele frequency due to gene flow is $\Delta q_m$, then the change in allele frequency due to the joint effect of the two forces is $\Delta q=\Delta q_m + \Delta q_s$\parencite{Hedrick2010}.
+Assuming the fitness values of $A_1A_1$, $A_1A_2$, and $A_2A_2$ are $1$, $1-s$, and $1-2s$ respectively, then $\Delta q$ can be expressed as $\Delta q = sq^2-(m+s)q+mq_m$ \parencite{Li1976}. 
+When $\Delta q = 0$, there is equilibrium, and the equilibrium frequency is found by solving the quadratic equation.
+
+\begin{equation}
+q_e = \frac{1}{2s}\{(m+s)\pm[(m+s)^2-4msq_m]^{1/2}\}
+\end{equation}
+
+$A_1$ is favored if $s$ is positive, otherwise $A_2$ is favored \parencite{Hedrick2010}.
+There are three main scenarios to consider, one where gene flow is much less, greater than, or equal to the absolute value of selection ($|s|$).
+As $m$ increases with respect to $|s|$, genetic differentiation does not occur.
+This is intuitive, as gene flow has a homogenizing effect as previously described, and with increasing $m$, its effects become more influential than the effects of selection, and the island's equilibrium frequency approaches that of the migrants coming from the continent \parencite{Li1976}.
+
+Generally, the equilibrium frequency of an island depends on the selective advantage, the level of dominance on the island, and the amount of gene flow.
+With high amounts of gene flow, even a favorable variant can be lost from an island, no matter its level of dominance.
+This is called patch disappearance \parencite{Haldane1948}.
+Thus gene flow is a force which limits selection and local adaptation \parencite{Lenormand2002}.
+
+
+\subsubsection{Importance of gene flow}
+
+Gene flow and genetic structuring significantly influence plant pathogen and marine plankton populations.
+Gene flow is the force which introduces new virulence alleles into a new agricultural field, far from the source of original mutation.
+Plant pathogen populations are often made up of one or a few clonal lineages which differentiate themselves from other populations (in chapter \ref{chap:Acandida} these are called 'races') \parencite{Koenig1997}.
+In such populations, it may help instead to think of genotype flow rather than gene flow because of the high degree of linkage.
+Genotype flow refers to the movement of entire genotypes between distinct populations.
+Since many plant pathogens have an asexual stage and a sexual stage, both genotype flow and gene flow can occur.
+An existing example of gene flow between plant pathogen populations is provided by \cite{Zhan2003a}, who demonstrated that \textit{Mycosphaerella graminicola} populations shared RFLP alleles, but no two populations had completely identical fingerprints, indicating that gene flow, but not genotype flow, was occurring.
+An example of genotype flow is the global movement of a single clone of \textit{Phytophthora infestans}, out of Mexico in the 1840's as previously described.
+Only one mating type escaped and spread globally, and as the organism has two mating types, sexuality was not possible until the other mating type escaped in the 1970's \parencite{Goodwin1992,Goodwin1994,Goodwin1995}.
+
+There is substantial evidence of genetic structuring in marine plankton populations despite the high dispersal capacity of those organisms that might usually lead one to expect high levels of gene flow \parencite{Sildever2016}.
+Oceanographic features like currents and eddies will create habitat heterogeneity which in turn leads to genetic population structuring \parencite{White2010,Sanford2011,Casabianca2012}, as do chemical and biotic properties of the oceans such as pH levels, temperature, salinity, and the presence or absence of predators and parasites \parencite{Cousyn2001,Decaestecker2007,Weisse2007,Yampolsky2014,Defaveri2014}.
+All these factors may cause local adaptation resulting in population structuring.

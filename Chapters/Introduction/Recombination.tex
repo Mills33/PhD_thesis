@@ -1,0 +1,176 @@
+\subsection{Recombination and linkage}
+
+In the theory introduced so far, it has been assumed that alleles at a locus under consideration are transmitted independently of any alleles at any other loci.
+This is called independent assortment \parencite{Hedrick2010}.
+It was also assumed that the fitnesses of genotypes at any given locus were independent of the fitnesses of other genotypes at other loci.
+However, this simplification is not valid in the majority of cases.
+The transmission of genetic variants does not occur independently of other genetic variants.
+This is because of linkage between genetic variants; variants are distributed across DNA molecules, and two variants situated on the same molecule are said to be physically linked.
+The non-random association of alleles is called linkage disequilibrium (LD) \parencite{Lewontin1960}.
+The amount of LD is generally an inverse function of the rate of recombination. Where recombination is the rearrangement of genetic material, especially by crossing over in chromosomes or by the artificial joining of segments of DNA from different organisms 
+
+If one assumes a large randomly mating population has two alleles at one locus $A$ ($A_1$, $A_2$), and two alleles at a second locus $B$ ($B_1$, $B_2$), then four gametes or haplotypes are possible: $A_1B_1$, $A_1B_2$, $A_2B_1$, and $A_2B_2$.
+The frequencies of these four haplotypes are denoted as $x_{11}$, $x_{12}$, $x_{21}$, and $x_{22}$.
+The frequencies of each allele are $p_1=x_{11}+x_{12}$, $p_2=x_{21}+x_{22}$, $q_1=x_{11}+x_{21}$, and $q_2=x_{12}+x_{22}$ for $A_1$, $A_2$, $B_1$, and $b_2$, respectively \parencite{Lewontin1960}.
+
+Assuming random association between alleles in gametes, then the frequency of each gamete is equal to the product of the frequencies of the alleles it is made of.
+In other words $x_{11}=p_1q_1, x_{12}=p_1q_2, x_{21}=p_2q_1, x_{22}=p_2q_2$.
+However, when this assumption does not hold and there is nonrandom association between alleles, the frequencies must be written as a function of these expected frequencies, with some deviation $D$ from the expectation.
+Therefore, $x_{11}=p_1q_1+D, x_{12}=p_1q_2-D, x_{21}=p_2q_1-D, x_{22}=p_2q_2+D$.
+$D$ is the LD parameter and it is a measure of the deviation from random association between alleles at different loci, $D = x_{11} - p_1q_1$ \parencite{Lewontin1960}.
+In other words it is the observed frequency of a gamete, minus the expected frequency of the gamete.
+By substituting values $p_1$ and $q_1$, $D$ may be written as:
+
+\begin{equation}
+D=x_{11}x_{22}-x_{12}x_{21}
+\end{equation}
+
+The gametes can be categorized as coupling or repulsion gametes.
+Coupling gametes are those with alleles of the same subscript, and repulsion gametes are those with alleles with different subscripts.
+$D$ then is the product of the frequencies of the two coupling gametes, minus the product of the frequencies of the repulsion gametes \parencite{Hedrick2010}.
+
+From these four gametes, 10 genotypes are possible. The genotypes and their expected proportions are listed in Table \ref{table:linkagearray}.
+These derivations make sense given that $A_1B_1/A_1B_1$ genotypes only produce $A_1B_1$ gametes, and that $A_1B_1/A_1B_2$ genotypes produce $1/2A_1B_1$ and $1/2A_1B_2$ gametes.
+Double heterozygotes produce gametes different from the parental gametes due to recombination, e.g. $A_1B_2$ and $A_2B_1$ gametes can be produced by recombination of $A_1B_1/A_2B_2$ individuals.
+The recombination rate is denoted as $c$ in Table \ref{table:linkagearray}.
+$c$ ranges from 0 where there is no recombination between loci $A$ and $B$, to $0.5$ or independent assortment.
+The frequency of each gamete in the next generation can be calculated the summing each of columns 3 to 6 in Table \ref{table:linkagearray}, the simplified way of working out such sums are given on the bottom line of the table, where $D_0$ is the initial amount of LD \parencite{Hedrick2010}.
+
+\begin{table}
+\caption{Expected frequencies for different gametes in a two-allele, two-locus system, adapted from \cite{Hedrick2010}.}
+\resizebox{\textwidth}{!}{%
+{\renewcommand{\arraystretch}{2}
+\begin{tabular}{*{6}{c}}
+\toprule
+&& \multicolumn{4}{c}{Gametes of offspring} \\\cline{3-6}
+Genotypes & Frequencies & $A_1B_1$ & $A_1B_2$ & $A_2B_1$ & $A_2B_2$ \\ 
+\midrule
+$A_1B_1/A_1B_1$ & $x_{11}^2$ & $x_{11}^2$ & $-$ & $-$ & $-$ \\ 
+$A_1B_1/A_1B_2$ & $2x_{11}x_{12}$ & $x_{11}x_{12}$ & $x_{11}x_{12}$ & $-$ & $-$ \\
+$A_1B_2/A_1B_2$ & $x_{12}^2$ & $-$ & $x_{12}^2$ & $-$ & $-$ \\
+ 
+$A_1B_1/A_2B_1$ & $2x_{11}x_{21}$ & $x_{11}x_{21}$ & $-$ & $x_{11}x_{21}$ & $-$ \\
+$A_1B_1/A_2B_2$ & $2x_{11}x_{22}$ & $(1-c)x_{11}x_{22}$ & $cx_{11}x_{22}$ & $cx_{11}x_{22}$ & $(1-c)x_{11}x_{22}$ \\ 
+$A_1B_2/A_2B_1$ & $2x_{12}x_{21}$ & $cx_{12}x_{21}$ & $(1-c)x_{12}x_{21}$ & $(1-c)x_{12}x_{21}$ & $cx_{12}x_{21}$ \\
+$A_1B_2/A_2B_2$ & $2x_{12}x_{22}$ & $-$ & $x_{12}x_{22}$ & $-$ & $x_{12}x_{22}$ \\
+
+$A_2B_1/A_2B_1$ & $x_{21}^2$ & $-$ & $-$ & $x_{21}^2$ & $-$ \\
+$A_2B_1/A_2B_2$ & $2x_{21}x_{22}$ & $-$ & $-$ & $x_{21}x_{22}$ & $x_{21}x_{22}$ \\
+$A_2B_2/A_2B_2$ & $x_{22}^2$ & $-$ & $-$ & $-$ & $x_{22}^2$ \\\midrule
+
+& $1$ & $x_{11}^\prime=x_{11}-cD_0$ & $x_{12}^\prime=x_{12}+cD_0$ & $x_{21}^\prime=x_{21}+cD_0$ & $x_{22}^\prime=x_{22}-cD_0$ \\\bottomrule
+
+\end{tabular}}}
+\label{table:linkagearray}
+\end{table}
+
+The amount of $D$ after one generation then is $D_1=x_{11}^\prime x_{22}^\prime-x_{12}^\prime x_{21}^\prime$.
+After substitution and simplification this becomes $D_1=(1-c)D_0$, which is recursive and so can become
+\begin{equation} \label{eq:ldatt}
+D_t=(1-c)^tD_0
+\end{equation}
+with $D_t$ meaning the amount of LD after $t$ generations \parencite{Hedrick2010}.
+
+With this formula we see that when there is no linkage ($c=0.5$) most disequilibrium is lost within a few generations, and with lower recombination rate, linkage is tighter as recombination does not break up associations between alleles as frequently, and so LD does not decay as fast.
+
+To determine how long it will take for an initial amount of LD $D_0$ to decay to a given amount of LD $D_t$ the equation \ref{eq:ldatt} can be solved to give:
+\begin{equation}
+t=\frac{\ln(D_t/D_0)}{\ln(1-c)}
+\end{equation}
+\parencite{Hedrick2010}.
+
+The measure of LD described is not the only one proposed \parencite{Hedrick1987,Lewontin1988,Devlin1995}.
+To examine the extent of linkage equilibrium over chromosomes, the $r^2$ and $D^\prime$ are often used and the extent of LD measured varies with the estimated amount of recombination over chromosomes \parencite{Dawson2002}.
+
+The rate of recombination $c$ is estimated as the proportion of recombinant gametes produced from a parent with a known gamete constitution \parencite{Hedrick2010}.
+The amount of recombination can vary because of a few factors. 
+Recombination can vary between the sexes, on different chromosomes, and between different regions on the chromosomes.
+Regions of higher or lower levels of recombination than are expected are termed hot spots and cold spots \parencite{Arnheim2003,Kauppi2004}.
+Patterns of LD can be used to try to putatively identify such hot and cold recombination regions and estimate rates of recombination \parencite{Stumpf2003,Ptak2004,Auton2007}, and many other methods of recombination detection in DNA sequences exist.
+In chapter \ref{chap:HC} more methods for detecting recombination are discussed along with presentation of the HybridCheck software.
+
+LD can be generated by multilocus selection.
+For example, tightly linked members of a multigene family or supergene \parencite{bhl29158} may be under selection that generates linkage disequilibrium as each gene of the family is related in its adaptive function.
+Multigene family members are created by serial gene duplication, followed by divergence through mutation, drift, and differential selection.
+Therefore, they have historical association, but interacting effects between them may cause selection to maintain their association, keeping them in disequilibrium.
+The MHC of vertebrates has properties of both supergenes and multigene families and is in linkage disequilibrium \parencite{Edwards1998,Beck2000}.
+
+LD can be influenced by genetic drift \parencite{Hill1968,Ohta1969}. The effects of drift on LD can be considered by imagining the two-loci two-state model as four alleles at one locus.
+Drift will alter the frequency of the gametes from generation to generation similar to that of a single loci model.
+Thus, drift in small populations can lead to nonrandom associations between alleles at different loci \parencite{Hedrick2010}.
+Recombination reduces the effect of drift, reconstituting some gametes.
+The expected value of the LD measure $r^2$ for a given effective population size $N_e$ and a given rate of recombination between two loci $c$, can be expressed as:
+\begin{equation} \label{eq:Ersq}
+E(r^2)\approx\frac{1}{1+4N_ec}
+\end{equation}
+\parencite{Hill1968,Ohta1969}.
+
+With large $N_ec$, $E(r^2)$ moves towards $0$, with smaller $N_ec$ $E(r^2)$ approaches $1$.
+Just as with the single locus model, founder events and population bottlenecks can also influence LD.
+If $N_e$ was small at some point in the past, the LD caused may still be present if the LD has not decayed \parencite{Hedrick2010}.
+With large $N_ec$, equation \ref{eq:Ersq} is approximately
+\begin{equation}
+E(r^2)=\frac{1}{\rho}
+\end{equation}
+where $\rho$ is $4N_ec$ or the population recombination rate.
+This is analogous to the population mutation rate $\theta = 4N_e\mu$ \parencite{Wall2000,Stumpf2003,Padhukasahasram2006}, and the expected amount of LD decreases as $\rho$ increases (assuming that drift is the only thing affecting LD) \parencite{Pritchard2001,Hedrick2010}.
+
+Mutations may also generate low levels of LD, however recurrent mutation is unlikely to cause higher LD because as they are unlikely to occur associated with the same allele repeatedly, and any buildup of LD through mutation would occur more slowly than the process of recombination reducing LD \parencite{Hedrick2010}.
+However, mutation coupled with recombination and gene flow are the source of new haplotypes in populations.
+New genetic variants can increase in frequency by selection and drift, and hence all these factors in concert may create additional LD \parencite{Hedrick2010}.
+Mutations may also break up LD if the mutation rate is high enough.
+Assuming an allele $A_1$ which mutates to a disease allele $A_2$, creating a new gamete $A_2B_1$, if mutations from $B_1$ to any other $B$ allele occur at rate $\mu$, assuming no recombination, the association between a disease allele $A_2$ and $B_1$ is broken down.
+This effect has been found to be especially significant for microsatellite loci, which are characterized by a high mutation rate relative to SNP and indel mutations \parencite{Payseur2008}.
+
+Gene conversion can also affect LD, but typically only affects shorter DNA segments. Assume there is gene conversion around a gene $B$ in an $A_1B_1C_1/A_1B_2C_1$ individual, gene conversion could result in a $A_1B_2C_2$ gamete.
+$B_1$ has been converted to $B_2$.
+This would decrease LD between $A$ and $B$, and $B$ and $C$.
+However, it would not affect LD between $A$ and $C$.
+Many close sites do not have complete association, suggesting that reduction in LD is occurring through gene conversion \parencite{Ardlie2001}.
+Note however that consecutive mutations can also explain the incomplete association between linked sites.
+For example, consider three haplotypes $A_1B_1C_2$, $A_1B_2C_1$, and $A_1B_2C_2$ in a ~100bp fragment in a population sample.
+This observation is consistent with recombination (between the \nth{1} and \nth{2} haplotype, with breakpoint between $B$ and $C$, creating the \nth{3} haplotype).
+It is also consistent with gene conversion (e.g. a $C_1$ in an ancestral \nth{2} haplotype might have been converted by the $C_2$ of the \nth{1} haplotype, thereby creating a novel \nth{3} haplotype).
+Finally, it is also consistent with mutation ($B_2 \rightarrow B_1$) in the ancestral \nth{3} haplotype ($A_1B_2C_2$), creating the \nth{1} haplotype, and a second mutation ($C_2 \rightarrow C_1$) in another copy of the ancestral $A_1B_2C_2$ haplotype (before or after the first mutation at any point in time) resulting in the \nth{2} haplotype.
+In other words, and in contrast to \cite{Ardlie2001}, the observation that many close sites do not have complete association should not be taken as evidence for gene conversion because other evolutionary forces can explain this observation more plausibly.
+
+Gene flow can also affect LD.
+The amount of disequilibrium when two populations are mixed to produce a third can be expressed as
+\begin{equation}
+D=m_xm_y(p_{1\cdot x}-p_{1\cdot y})(q_{1\cdot x}-q_{1\cdot y})
+\end{equation}
+where $p_{1\cdot x}$ and $p_{1\cdot y}$ are the frequencies of of the $A_1$ allele in the two populations being mixed (population $x$ and population $y$), and $q_{1\cdot x}$ and $q_{1\cdot y}$ are the frequencies of the $B_1$ allele in the two populations \parencite{Hedrick2010}.
+For LD to be generated, the frequencies of both loci must be different in the two populations.
+The greater the difference, and the more equal the contributions are from each population, the more LD is generated \parencite{Hedrick2010}. 
+    
+Population subdivision reduces the rate of LD decay.
+The reduction in heterozygotes in subdivided populations due to the Wahlund effect \parencite{Wahlund1928} reduces the opportunity to create recombinant gametes.
+If the amount of gene flow is small, then it can determine the rate of LD decay \parencite{Nei1973}.
+The amount of linkage disequilibrium has been expressed as $D\approx m/c$ \parencite{Barton2007} i.e. it is a balance between the rate of gene flow creating LD, and the rate of recombination reducing LD.
+Since many factors including selection, drift, gene flow and mutation affect LD, it can be difficult therefore to attribute a cause of LD without historical knowledge or data.
+
+Since alleles are linked and selection occurs at one or more loci we say that alleles have a genetic background \parencite{Hedrick2010}.
+Multilocus phenomenon may explain some observations encountered in evolutionary genetics.
+Apparent heterozygous advantage at a given marker locus may actually be caused by association of alleles at a linked locus to the alleles at the marker locus \parencite{Ohta1971}.
+For example, \cite{VanOosterhout2009} proposed that the genetic variation at the MHC may be maintained by a linkage of the genetic load (or sheltered load) present at the peri-MHC region.
+Recessive deleterious mutations associated with a given haplotype prevent the fixation of that haplotype in the population because these mutations would become expressed in homozygous state, reducing the fitness of that individual.
+In other words, an MHC haplotype is “self incompatible” because it expresses its genetic load in homozygous state.
+Assuming that each MHC haplotype has its “own” sheltered load of recessive deleterious mutations, this prevents their fixation in the population, and results in a balanced polymorphism \parencite{VanOosterhout2009}.
+Recombination between MHC alleles is further reduced by negative epistasis, with selection operating against recombination because the recombinant haplotype are “incompatible” with both parental (non-recombinant) haplotypes.
+
+Furthermore, changes in allele frequencies might be the result of selection acting on alleles at an associated locus to one being observed.
+This can result in genetic hitchhiking, selective sweeps or background selection \parencite{Charlesworth2010}.
+Genetic hitchhiking, previously described as the mechanism by which hypermutator alleles can be indirectly selected for in clonal populations (section \ref{sec:Mutation}), is possible because of linkage.
+Neutral alleles can increase in frequency because of their association with a selected allele.
+The magnitude of hitchhiking depends on the extent of linkage, inbreeding, and the initial amount of LD \parencite{Thomson1977,Hedrick1980,Kaplan1989}.
+If there is no initial statistical association between the neutral and selected allele, there can be no hitchhiking, even if recombination rates are low.
+To fully understand the effect of hitchhiking, the rate of change in frequency of the positively selected allele must be known \parencite{Hedrick2010}.
+For example for a new advantageous recessive allele, initial increase in frequency due to selection will be low (see section \ref{sec:Selection}), providing time for recombination to reduce initial LD, and thus reducing the amount of expected hitchhiking of neutral alleles.
+Hitchhiking can even create LD between two neutral loci if they are associated with a third selected locus \parencite{Thomson1977,Hedrick1980}.
+One of the most important effects of hitchhiking is the reduction in heterozygosity of neutral or nearly neutral variation in areas of low recombination \parencite{Maynard-Smith1974}.
+This is called a selective sweep and leaves a characteristic signature in genome sequences, which can be detected to provide evidence of recent selection \parencite{Hedrick2010}.
+
+The projects presented in this thesis are concerned with how recombination has influenced the adaptive evolution of the two species studied. Specific aspects of recombination, sex and linkage relevant to each project are introduced in detail in subsequent chapters.
+In the introduction to chapter \ref{chap:diatom} the advantages and disadvantages of recombination and sex are presented, to provide context to the question of why \textit{F. cylindrus} might have abandoned sex (as is hypothesized at the start of the study).
+In chapter \ref{chap:Acandida} the evolutionary advantages and disadvantages of introgression and hybridisation is discussed in the context of results, and there multilocus concepts are important. 
+

@@ -1,0 +1,79 @@
+
+Deoxyribonucleic acid was demonstrated as the genetic material by Oswald Theodore Avery in 1944 \parencite{Russell1988}.
+Watson and Crick demonstrated its double helix structure composed of four nucleotide bases in 1953 \parencite{Watson1953}.
+This led to the central dogma of molecular biology.
+In most cases, genomic DNA defined the species and individuals, which makes the DNA sequence fundamental to the research on the structures and functions of cells.
+Sequencing of genomes then is now an essential task  to complete, yielding essential data biologists need to understand biology and evolution of organisms.
+The automated Sanger method was considered a first-generation sequencing technology \parencite{Sanger1975,Sanger1977}, and since then newer methods have been developed making sequencing cheaper and increasingly high throughput, these are referred to as next-generation sequencing (NGS) technologies \parencite{Goodwin2016}.
+
+With the development of NGS technology, algorithms and tools for bioinformatics and evolutionary study have developed rapidly.
+Here, I present a brief overview of the principles of several key bioinformatics tasks that population genetic studies with NGS data require. The processes below assume quality control of NGS reads is completed.
+
+
+\subsection{Sequence Alignment}
+
+An alignment of two sequences aims to discover or highlight how similar the two sequences are.
+The concept of alignments is a natural one in settings where one sequence, changes over time into a second sequence, through a series of simple operations (called edit operations) like insertions of characters, deletions of characters, and a substitution of one character for another \parencite{makinen2015genome}.
+It is unsurprising therefore, that alignments are a common first step in many evolutionary analyses. An alignment of the characters in two sequences, which have stayed the same over time, could be defined as the list of pairs of positions ($i$, $j$) such that the $i$th position in the first sequence is considered a match to the $j$th positions in the second sequence \parencite{makinen2015genome}.
+
+In a practical setting, the two sequences (A \& B) are typically short homologous regions of the genomes of two different individuals, or species/taxa, and are considered to have evolved through a series of changes (edit operations), from some unobserved common ancestor \parencite{Lemey2009b}.
+DNA sequence alignment algorithms typically require a scoring matrix which which they score potential alignments.
+These matrices typically define scores for aligning any two characters in two sequences, and have some basis in biologically reality.
+For example, the BLOSUM scoring matrix was derived from data of conserved regions of protein families \parencite{Lemey2009b}. 
+The score of any given pairwise alignment is the sum of the scores that were assigned by the scoring matrix for each position of the alignment. 
+
+A local alignment algorithm attempts to find the best alignments for sub-sequences of a query sequence with a reference sequence \parencite{Lemey2009b}.
+Whereas global alignment algorithms attempt to find the best end to end alignment between a query sequence and a reference sequence.
+Traditionally, pairwise sequence alignments were computed using dynamic programming algorithms such as the Needleman-Wunsch (global sequence alignment) \parencite{Needleman1970}, and the Smith-Waterman (local sequence alignment) algorithms \parencite{Smith1981}, but efficient and accurate techniques for sequence alignment is an active area of research, and so many advances, and different techniques and software packages have been developed.
+Multiple alignment is the generalisation of pairwise sequence alignment to more than two sequences, this is a hard problem which becomes computationally unfeasible for many sequences without use of heuristics, such as the progressive alignment method, which first constructs a guide tree \parencite{Loytynoja2005}.
+
+Sequence alignments can be used to align multiple gene or protein sequences together, align reads from high throughput sequencing platforms to a reference genome assembly \parencite{Li2009b}, or to align different genome assemblies together \parencite{Paten2011}.
+In all cases these alignments may be used to run variant calling algorithms to infer the presence of mutations and structural alterations that are present in the genomes of different taxa, individuals, or populations, and can be used to genotype individuals, and compute population genetics and evolutionary analyses.
+
+
+\subsection{Variant Calling}
+
+Variant calling yields genotype data which may then be used in population genetics study.
+Identification of SNPs (sometimes called Single Nucleotide Polymorphisms or simply mutations) can be done with a read pileup output after aligning reads to a reference genome \parencite{Li2009a,Li2011}.
+If a position $j$ in the reference genome is covered by $n$ reads, and of those reads, $p$ per cent of them indicate that position $j$ is an ‘A’, and the rest indicate that position $j$ is a ‘G’, then it is possible to reason whether this is because the sample that was sequenced is polymorphic, or because of an alignment error or sequencing error \parencite{makinen2015genome}.
+Such errors are easy to identify, as they are independent events, and as such exist in a very low frequency, because the probability of observing many errors in the same location decreases exponentially.
+Therefore, so long as the sequencing is done to a sufficient depth of coverage, one can identify the polymorphic positions in a genome and rule out the errors with reasonable accuracy \parencite{makinen2015genome}.
+
+Larger variants can also be detected from the read pileup.
+If there is a deletion in the genome of the sample from which the reads were sequenced, then if it is larger than the error threshold in the alignment, then there should be regions of the read pileup where the reference is uncovered by reads \parencite{makinen2015genome}.
+The region should have the same length as the deletion.
+If there is an insertion in the genome of the sample from which the reads were sequenced, then if it is longer than the error threshold of the alignment, then in the pileup there would be a series of consecutive positions ($j$, $j+1$) for which no read covers both $j$ and $j+1$ \parencite{makinen2015genome}.
+This is a simplistic approach to indel detection because in reality software implementations and algorithms also take into account errors, noise, base call qualities, and can have additional complexities such as utilizing data from many samples, and from linked sites. \parencite{Li2011,Nielsen2011,Mielczarek2016}.
+
+Another approach to indel detection is to take advantage of sequencing technology platforms, which produce paired-end, or mate pair reads.
+Sequencers can produce pairs of reads for each DNA molecule, one begins from one end of the molecule, and the other begins from the other end, and both extend towards the middle of the molecule.
+When paired-end read pairs are aligned to a reference genome, they have an expected distance $k$ between them, this expected distance is known in advance according to the protocol used to prepare the DNA library for sequencing \parencite{makinen2015genome}.
+It’s possible to compute the actual distance for each paired-end read pair, and then compute the mean and variance of those distances.
+Once the mean distance $k'$ and variance is known, each paired-end read pair can be tested to see if its distance is significantly different to the average distance.
+If the distance is significantly different an indel is inferred between those reads with length of $k-k'$ \parencite{makinen2015genome}. 
+
+
+\subsection{Haplotype phasing}
+
+Genotypes are the unordered combination of alleles at each site of an organism’s genome.
+The haplotype are the sequences of alleles that have been inherited together from one parent.
+For example, diploids possess two copies of each chromosome, therefore, in addition to being interested in which variants they possess (the genotype), one is also interested to know to which of a diploid’s two haplotypes each variant belongs – is the variant in the organism’s maternal copy of a DNA molecule, or is it in the paternal copy?
+The process of identifying all the variants which are situated along the same haplotype of an organism is called haplotype phasing.
+In an individual, variants which are clearly homozygous may be assigned to both haplotypes very simply as both haplotypes must possess them.
+
+Given that when there are $N$ heterozygous sites in a sequenced DNA molecule, there are a total of $2N-1$ possible haplotypes, that could result in those haplotypes \parencite{makinen2015genome}.
+Haplotype phasing was known to be a hard problem even before the development of high throughput sequencing technology.
+However, advances have been made and several software packages now exists to perform this task.
+The most accurate and widely used methods employ Hidden Markov Models to infer haplotypes \cite{makinen2015genome}.
+For some time, a software implementation called PHASE was considered the superior method.
+PHASE took ideas from coalescent theory about the joint distribution of haplotypes \parencite{Marchini2007,Marchini2010,Howie2011}.
+PHASE was limited by its speed however and since the development of PHASE other methods implemented in packages like IMPUTE2 and SHAPEIT1 \& 2 have made improvements to the efficiency and accuracy of haplotype inference algorithms \parencite{Stephens2003,Delaneau2012,Delaneau2013,Delaneau2013a,OConnell2014}.
+
+The flow of aligning high throughput sequencing reads to a reference, running variant calling and possibly haplotype inference, followed by downstream population genetic analysis on the genotype or haplotype data, is now a standard work-flow.
+The choice of which software packages and algorithms should be used for each task can be a subjective decision which should aim to follow best-practice for each case in question.
+For example, the best algorithm to use on human data, may not be the best one to use on an organism like wheat which has a radically different genome.
+
+
+
+
+

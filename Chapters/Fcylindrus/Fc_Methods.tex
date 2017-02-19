@@ -1,0 +1,146 @@
+\section{Materials and Methods}
+
+\subsection{Materials}
+
+\subsubsection{Sequence Data: PCR Amplified Alleles}
+
+In this study, subsequently described analyses were performed using the same
+dataset.
+Two genes (ABC Iron Transporter (Protein ID 240308) and Large Ribosomal sub-unit
+(Protein ID 240308)) of an environmental sample of \textit{F. cylindrus} were
+amplified by PCR and sequenced using Sanger sequencing to yield high quality
+sequences. A total of 93 and 103 alleles were found in both genes, respectively.
+The DNA extraction, and PCR amplification, was completed by Dr. Jan Strauss.
+Sanger sequencing was performed by \parencite{Mock2017}.
+These two sequence datasets shall be referred to hereafter as FcABC
+(ABC Iron transporter), and FcLR (Large Ribosomal Subunit).
+
+\subsubsection{Sequence Data: Allelic pairs from the genome}
+
+Previously, a set of diverged alleles was defined for any downstream analyses:
+The genome assembly was aligned against itself using BLAST, with a 95\% nucleotide identity threshold, and greater or equal to 50\% alignment coverage for smaller scaffolds.
+Syntenic scaffolds that were homologous across their whole length were analyzed with Mauve.
+Diverged alleles on large scaffolds were referred to as “allele 1”, the corresponding allele on the smaller scaffold was referred to as “allele 2”.
+For more details, the reader is referred to the paper \parencite{Mock2017}.
+The allelic pair set was used to estimate coalescence times between alleles,
+as described in the next section.
+
+\subsection{Methods}
+
+\subsubsection{Estimating Coalescence times of alleles}
+
+Because the FcABC and FcLR sequences were used for recombination detection,
+and the calculation of networks for the simulation and network analysis portion
+of this study, it was important to determine the two sequence datasets were
+representative of the allelic pairs identified in the genome data.
+Therefore, coalescence times were calculated A) Between the two sequences of
+each allelic pair identified from the genome data (see above), B) between pairs
+of FcABC sequences, C) between pairs of FcLR sequences.
+If the distributions of coalescence times for A) FcABC, and B) FcLR, overlap
+the distribution of coalescence times calculated for the genome data, then the
+FcABC and FcLR sequence datasets could be considered representative of the
+allelic pairs from the genome data.
+
+Coalescence times were estimated using the algorithm available in the
+HybridCheck R package (https://github.com/Ward9250/HybridCheck).
+The algorithms and design of HybridCheck is described in chapter \ref{chap:HC} of this
+thesis. Briefly, the algorithm used estimates coalescence time of two aligned
+sequences based on the number of mutations that are observed between two
+sequences. HybridCheck models a Bernoulli trial with a strict molecular clock,
+which assumes a constant mutation rate ($\mu$ = 10e-9) and a Jukes and Cantor model
+for base substitutions.
+
+Coalescence time estimates calculated by the HybridCheck algorithm are expressed
+in terms of generations, as described in chapter \ref{chap:HC}.
+An estimate in terms of real time (years) was desired to attempt to put the
+divergence of the allelic pairs into a historical context.
+Estimates were converted to years using an estimated division rate of 12.472
+per year. This yearly division rate assumed a division rate of 0.1 per day,
+and a growing season of four months per year, where each month consisted of
+30.4368 days. 946 allelic pairs were successfully pulled, aligned, and dated
+from the genome sequence data.
+
+
+\subsubsection{Testing for recombination in the PCR amplified alleles with the PHI-test}
+
+We tested for recombination in both the FcABC and FcLR sequence datasets using the PHI-test for recombination \parencite{Bruen2006}.
+The test accepts a multiple sequence alignment and is based on the principle of refined compatibility: For a given pair of informative sites in a multiple sequence alignment, they are deemed compatible if there is a phylogenetic history that can be inferred parsimoniously, on the condition that there is no recurrent mutation, or convergent mutations \parencite{LeQuesne1969}. 
+
+If the condition is not satisfied then the sites are classified as incompatible.
+Incompatible sites are explained either by homoplasies, or by recombination.
+The PHI-test extends this notion by using the refined incompatibility score, which allows for consideration of situations in which multiple homoplasies can be parsimoniously inferred a pair of sites \parencite{Bruen2006}.
+The PHI-test then computes the mean refined compatibility scores of nearby sites and a p-value is calculated parametrically \parencite{Bruen2006}. The analyses were repeated with window sizes of 100, 50, and 10 base pairs.
+
+
+\subsubsection{Population recombination rate and theta parameter estimation with LAMARC}
+
+A population recombination rate, and the population mutation rate $\Theta$ (Theta), was inferred for the FcABC and FcLR sequence datasets, using the LAMARC software for coalescent analysis \parencite{Kuhner2006a}.
+Five independent runs were run for both datasets, in which 20 sequences were randomly sampled from each sequence dataset, and analysed with LAMARC, using uninformative priors and default settings, as much about \textit{F. cylindrus} populations in the wild is unknown.
+These results informed the choice of the $\Theta$ parameter used in simulations as described below.
+
+
+\subsubsection{Comparative Phylogenetic Network Analysis}
+
+\textit{Population Genetic Simulations.}
+
+All simulation scenarios were written as simuPOP scripts \parencite{Peng2005}.
+Since we are interested in assessing whether \textit{F. cylindrus} has an asexual past causing allelic divergence, when the word recombination is used in the section is specifically refers to meiotic recombination unless otherwise stated.
+
+Two scenarios were simulated:
+\begin{enumerate}
+\item A scenario in which individuals reproduced clonally (i.e asexually) and no recombination could take place.
+\item A scenario in which individuals reproduced sexually every generation, and in which the rate of meiotic recombination could be specified.
+\end{enumerate}
+
+In all three of these simulations, individuals in the simulated population were diploid and so contained one pair of chromosomes each (two homologous copies).
+The chromosomes were 750bp in length and the pairs of chromosomes begin as identical. By initializing individuals in this manner and then evolving them, each individual containing a pair of 750bp acted as an evolving allelic pair.
+
+When running each simulation design, various combinations of effective populations size, and mutation rates were used in a balanced manner such that $\Theta$ for the simulated populations should result in a similar $\Theta$ estimated for the FcABC and FcLR sequences by the LAMARC analysis.
+This permitted the preservation of the $\Theta$ parameter of the population but allowing more reasonable compute time. $\Theta$ values of 0.66, 0.066, 0.0066, were chosen based on the LAMARC analysis, with the value 0.066 being closest to the estimates returned by LAMARC.
+
+It was assumed that the census size set in the simulations is a reasonable approximation for the effective population size, given that in our simulations the population was panmixtic, i.e.:
+\begin{itemize}
+\item There are always an equal number of males to females.
+\item No one individual is more likely to produce offspring than any other.
+\item Mating is random – when sexual reproduction occurs any male can potentially be paired with any female.
+\item The number of breeding individuals is always the same for all generations.
+\end{itemize}
+For the simulations where recombination occurs, various recombination rates (relative to $\mu$) were used, from no recombination ($r = 0$), to $r = 0.1\mu$, $r = 0.5\mu$, $r = \mu$, $r = 5\mu$, and $r = 10\mu$.
+
+All simulations ran on the computer for a number of generations equal to the intended effective population size multiplied by 20.
+The mating scheme kept the population size constant – during mating, one male and one female virtual diatom is randomly picked from the population.
+The number of offspring they produce is drawn from a Poisson distribution with mean and variance equal to 2.
+This is repeated over and over until the new offspring population is of equal size to the parental population.
+Individuals could be randomly selected for mating more than once.
+
+In every simulation performed, 96 individuals were randomly sampled and exported at various time points throughout all the simulation runs, and converted to FASTA sequence files.
+These FASTA files could then be used for generation of networks with SplitsTree \parencite{Huson1998}.
+
+\textit{Preparation of PCR amplified allele sequences.}
+
+The population genetic simulations described above were simulated with the absence of selection pressure.
+Therefore, before constructing phylogenetic networks of the FcABC and FcLR sequences to compare with networks constructed from the simulated sequences, it was necessary to reduce the influence of selection as much as possible.
+Therefore, when constructing phylogenetic networks for the FcABC and FcLR sequences, only the \nth{3} codon positions were utilized.
+To do this, a script translated every sequence in every possible reading frame and scored the number of stop codons or unknown proteins present in the translation.
+It is assumed the correct reading frame for the alleles is the one in which there are no stop codon in the middle of the sequence.
+Furthermore, this reading frame should be the same for almost all sequences.
+Sequences that resulted in uncertain translations in every reading frame were not used, and only sequences that had showed one reading frame with no stop codons were used to build networks.
+
+\textit{Calculating Phylogenetic Networks.}
+
+Phylogenetic networks were computed for the FcABC, FcLR, and simulated sequence datasets generated by each of the population genetic simulation scenarios previously described.
+All networks have been generated with the SplitsTree software \parencite{Huson1998}, and the methods used in the package to compute and draw the networks were the \textit{Uncorrected\_P} character transform, the \textit{NeighbourNet} distances transform, and the \textit{EqualAngle} splits transform.
+
+These networks constitute an expectation of what may be seen in the networks of the \textit{F. cylindrus} alleles under various scenarios of sexuality or asexuality.
+If \textit{F. cylindrus} has a past history of asexual reproduction, we would expect networks of sequences generated by an asexual simulation to show greater similarity to the networks of the \textit{F. cylindrus} alleles.
+If \textit{F. cylindrus} has a past history of low levels of sex then its network would show more similarity to the network derived from the model in which there is lower levels of recombination, and so on.
+By comparing the \textit{F. cylindrus} networks to those modeled networks it is possible to assess whether strict asexuality or infrequent sex is a likely possibility.
+It is important to note any simulated scenario with sexual reproduction with a zero recombination rate is not the same as asexual reproduction as the clonal reproduction scenario as the latter does not follow Mendelian inheritance, whereas sexual reproduction, with a recombination rate of zero, does follow Mendelian inheritance.
+
+In comparing networks of simulated allelic pairs and networks of the sequenced \textit{F. cylindrus} sequences, characteristics regarding the structure of the network, can be expressed quantitatively.
+To quantitatively assess the networks, we calculated the p-distance matrices for all the sets of simulated scenario sequences, and for the real \textit{F. cylindrus} sequences.
+In particular we calculated the mean and the variance – both of which were expected to be higher for networks of sequences evolved with lower recombination rates, showing signs of allelic divergence.
+The distances reflect the mean branch length in the network and are principally affected by the mutation-drift equilibrium, and hence $\Theta$.
+In order to assess the effect of recombination relative to the mutation rate ($R/\mu$), we quantified the number splits in the network, again comparing the simulated networks with those of the \textit{F. cylindrus} alleles.
+
+
